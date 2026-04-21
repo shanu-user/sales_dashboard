@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
 import plotly.graph_objects as go
-
+import imageio.v2 as imageio
 
 df = pd.read_csv("sales_data.csv")
 
@@ -61,6 +61,7 @@ sns.boxplot(x='Customer_Group', y='Total_Sales', data=df)
 plt.title("Customer Segmentation by Revenue")
 plt.show()
 
+
 # Violin Plot
 sns.violinplot(x='Product', y='Total_Sales', data=df)
 plt.title("Revenue Distribution by Product")
@@ -75,7 +76,7 @@ sns.heatmap(corr, annot=True, cmap='coolwarm')
 plt.title("Correlation Matrix")
 plt.show()
 
-# Dashboard Layout
+# Dashboard Layout..
 
 fig, axes = plt.subplots(2, 2, figsize=(12,10))
 
@@ -96,8 +97,9 @@ sns.violinplot(ax=axes[1,1], x='Product', y='Total_Sales', data=df)
 axes[1,1].set_title("Distribution by Product")
 
 plt.tight_layout()
-plt.savefig("visualizations/dashboard_layout.png")
+plt.savefig("visualizations/dashboard_demo.png")
 plt.show()
+
 
 # Interactive Plot
 import plotly.express as px
@@ -140,5 +142,11 @@ sns.set_palette("viridis")
 plt.rcParams['figure.facecolor'] = '#f5f5f5'
 
 
+image = imageio.imread("visualizations/dashboard_demo.png")
+
+# Repeat same image to create GIF
+frames = [image] * 10  
+
+imageio.mimsave("visualizations/dashboard.gif", frames, duration=0.5)
 
 
